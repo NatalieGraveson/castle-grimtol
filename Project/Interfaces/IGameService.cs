@@ -42,6 +42,7 @@ namespace CastleGrimtol.Project.Interfaces
     //being able to use the item
     void UseItem(string itemName);
 
+
     //Print the list of items in the players inventory to the console
     void Inventory();
 
