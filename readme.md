@@ -67,3 +67,28 @@ Your Game must implement the following features
 
 ### Finished?
 When You are finished please submit the url for your github repo to the gradebook.
+
+
+##HOW T OBEAT MY GAME
+-go north 
+-go east
+-go north
+-go north
+-go west
+-use switch2   (switch1 kills you)
+-go east
+-go east
+-go north (down hole which is a slide)
+-go north (should be in maze now)
+-go west
+-go south
+-go west
+-go north (DO NOT TRY AND TAKE DOLL OR YOU WILL DIE)
+-go north (towards clown)
+-go east
+-take costume
+-go west
+-go south
+-use costume
+-go west
+####winnnnnninggggggg
