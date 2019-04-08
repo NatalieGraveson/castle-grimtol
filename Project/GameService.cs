@@ -12,7 +12,7 @@ namespace CastleGrimtol.Project
     public Player CurrentPlayer { get; set; }
     public Room LockedRoom1 { get; set; }
     public Room LockedRoom2 { get; set; }
-    //public bool playing
+
 
     public void GetUserInput()
     {
@@ -83,7 +83,7 @@ namespace CastleGrimtol.Project
     {
       if (CurrentPlayer.Inventory.Count > 0)
       {
-        System.Console.WriteLine($"{CurrentPlayer.Inventory}");
+        //System.Console.WriteLine($"{CurrentPlayer.Inventory}");
         CurrentPlayer.Inventory.ForEach(i =>
        {
          Console.WriteLine(i.Description);
@@ -129,18 +129,18 @@ namespace CastleGrimtol.Project
       Room Mirrors1 = new Room("Mirrors1", "The floor beneath you is no longer moving...but everywhere you look you see yourself. As the strobe lights flash you can not tell where to go from here");
       Room Mirrors2 = new Room("Mirrors2", "You continue to see multiples of yourself, There is a quote in front of you that reads: mirror mirror on the wall who is the funniest of all");
       Room Mirrors3 = new Room("Mirrors3", "This room is completely dark but you can see two switches blinking on the wall in front of you...please type 'use' and select and switch");
-      Room Mirrors4 = new Room("Mirrors4", "There appears to be nothing in this room");//how do i make this change after correct switch is flipped 
-      Room Maze1 = new Room("Maze1", "Music continues to play, but once again you are left in the dark. As you feel around you appear to be in a tight hallway");
+      Room Mirrors4 = new Room("Mirrors4", "There appears to be nothing in this room");
+      Room Maze1 = new Room("Maze1", "You've fallen down a slide and now music continues to play, but once again you are left in the dark. As you feel around you appear to be in a tight hallway");
       Room Maze2 = new Room("Maze2", "Music continues to play, but once again you are left in the dark. As you feel around you appear to be in a tight hallway");
       Room Maze3 = new Room("Maze3", "Music continues to play, but once again you are left in the dark. As you feel around you appear to be in a tight hallway");
       Room Maze4 = new Room("Maze4", "Music continues to play, but once again you are left in the dark. As you feel around you appear to be in a tight hallway");
       Room Maze5 = new Room("Maze5", "Music continues to play, but once again you are left in the dark. As you feel around you appear to be in a tight hallway");
       Room Maze6 = new Room("Maze6", "Music continues to play, but once again you are left in the dark. As you feel around you appear to be in a tight hallway");
-      Room Clowns1 = new Room("Clowns1", "Finally you have found yourself in a well lit area. There is a metal door to the east and a clown in front of you.");
-      Room Clowns2 = new Room("Clowns2", "You find yourself face to face with a clown who states: some joke?. While he's talking you notice some lockers.");
-      Room Clowns3 = new Room("Clowns3", "The lockers surround you on all sides as you walk up to one it asks you for a pin.");//should i put this here?
-      Room Clowns4 = new Room("Clowns4", "This clown in front of you is different then the last it states:  blah blah blah.");
-      Room Clowns5 = new Room("Clowns5", "You've bumped into ANOTHER clown. it quickly says: riddle");
+      Room Clowns1 = new Room("Clowns1", "Finally you have found yourself in a well lit area. There is a metal door to the west and a clown in front of you.");
+      Room Clowns2 = new Room("Clowns2", "You find yourself face to face with a clown who states: The more you take, the more you leave behind. What am I?. While he's talking you notice some lockers near you..");
+      Room Clowns3 = new Room("Clowns3", "The lockers surround you on all sides as you walk up to one you notice the foor is unlocked and there is a an article of clothing hanging out.");
+      //Room Clowns4 = new Room("Clowns4", "This clown in front of you is different then the last it states:  blah blah blah.");
+      //Room Clowns5 = new Room("Clowns5", "You've bumped into ANOTHER clown. it quickly says: riddle");
       Room Winner = new Room("Winner", "Althought tramatized and dressed as a clown, you appear to be back on the boardwalk breathing in salty air and french fries.");
 
       LockedRoom1 = Maze1;
@@ -173,14 +173,14 @@ namespace CastleGrimtol.Project
       Clowns2.Exits.Add("east", (IRoom)Clowns3);
       Clowns2.Exits.Add("south", (IRoom)Clowns1);
       Clowns3.Exits.Add("west", (IRoom)Clowns2);
-      Clowns3.Exits.Add("east", (IRoom)Clowns4);
-      Clowns4.Exits.Add("west", (IRoom)Clowns3);
-      Clowns4.Exits.Add("south", (IRoom)Clowns5);
-      Clowns5.Exits.Add("north", (IRoom)Clowns4);
+      //Clowns3.Exits.Add("east", (IRoom)Clowns4);
+      //Clowns4.Exits.Add("west", (IRoom)Clowns3);
+      //Clowns4.Exits.Add("south", (IRoom)Clowns5);
+      //Clowns5.Exits.Add("north", (IRoom)Clowns4);
 
       //create items
       Item Doll = new Item("Doll", "There appears to be an old glass DOLL with long blonde hair and blood dripping down it's chin in the corner. The blood appears to come from it's mouth...");
-      Item Costume = new Item("Costume", "You see a COSTUME. It is bright red, yellow, blue. It includes a clown nose, and rainbow hair");
+      Item Costume = new Item("Costume", "There a COSTUME. It is bright red, yellow, and blue. It includes a clown nose, and rainbow hair");
       Item switch1 = new Item("switch1", "switch1");
       Item switch2 = new Item("switch2", "switch2");
       //give rooms their items
@@ -190,7 +190,7 @@ namespace CastleGrimtol.Project
       Mirrors3.Items.Add(switch2);
 
       //set the current room
-      CurrentRoom = Door;
+      CurrentRoom = Clowns1;
       CurrentPlayer = new Player("BOB");
     }
 
@@ -250,8 +250,9 @@ namespace CastleGrimtol.Project
 
     public void UseItem(string itemName)
     {
-      System.Console.WriteLine($"Using item in {CurrentRoom.Name}");
+      System.Console.WriteLine($"Using {itemName}");
       Item i = CurrentRoom.Items.Find(items => items.Name.ToLower() == itemName.ToLower());
+      Item item = CurrentPlayer.Inventory.Find(itemc => itemc.Name.ToLower() == itemName.ToLower());
       if (i != null)
       {
         if (i.Name == "switch2" && CurrentRoom.Name == "Mirrors3")
@@ -272,20 +273,28 @@ namespace CastleGrimtol.Project
           }
 
         }
-        Item item = CurrentPlayer.Inventory.Find(itemc => itemc.Name.ToLower() == itemName.ToLower());
-        if (itemName == "costume" && CurrentRoom.Name == "Clowns1")
+
+      }
+      else if (item != null && item.Name.ToLower() == "costume")
+      {
+
+
+        if (CurrentRoom.Name == "Clowns1")
+
         {
-          CurrentRoom.Exits["north"].Exits["west"].Exits["west"].Exits["south"].Exits.Add("west", LockedRoom2);
-
-
-
+          CurrentRoom.Exits.Add("west", LockedRoom2);
 
         }
-
+        else
+        {
+          System.Console.WriteLine("You look great!");
+        }
       }
       else
       {
+
         System.Console.WriteLine("item does not exsist..try again");
+
       }
     }
 
@@ -296,4 +305,7 @@ namespace CastleGrimtol.Project
   }
 
 }
+//cant get last door to unlock wont let me use costume
+
+//inventory shows weird txt about item
 
