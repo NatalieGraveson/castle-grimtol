@@ -144,7 +144,7 @@ namespace CastleGrimtol.Project
       Room Winner = new Room("Winner", "Althought tramatized and dressed as a clown, you appear to be back on the boardwalk breathing in salty air and french fries.");
 
       LockedRoom1 = Maze1;
-      LockedRoom2 = Winner;
+      LockedRoom2 = Door;
       //give rooms exists
       Door.Exits.Add("north", (IRoom)SpinFall1);
       SpinFall1.Exits.Add("east", (IRoom)SpinFall2);
